@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Review, ReviewsState, Language } from './interface'; 
+import { ReviewsState, Language } from './interface'; 
+import data from '../assets/data/data.json';
 
 
 const initialState: ReviewsState = {
   language: Language.Russian, 
-  reviews: [],
+  reviews: Object.values(data.ru),
 };
 
 const reviewsSlice = createSlice({
@@ -14,12 +15,10 @@ const reviewsSlice = createSlice({
   reducers: {
     setLanguage(state, action: PayloadAction<Language>) {
       state.language = action.payload;
-    },
-    loadReviews(state, action: PayloadAction<Review[]>) {
-      state.reviews = action.payload;
-    },
+      state.reviews = Object.values(data[action.payload]);
+    }
   },
 });
 
-export const { setLanguage, loadReviews } = reviewsSlice.actions;
+export const { setLanguage } = reviewsSlice.actions;
 export default reviewsSlice.reducer;
