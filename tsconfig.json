@@ -5,7 +5,15 @@
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "@reduxjs/toolkit": ["node_modules/@reduxjs/toolkit"],
+    }
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+, "src/App.js"  ]
 }
