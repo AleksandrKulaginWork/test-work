@@ -2,17 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './store/store';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       привет мир
-//     </div>
-//   );
-// }
-
-// export default App;
-
+import Watch from './components/Watch/index';
 
 
 class App extends Component {
@@ -20,6 +10,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="app">
+          привет мир
+        </div>
+        <div>
+        <Watch />
         </div>
       </Provider>
     );

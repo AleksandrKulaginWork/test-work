@@ -8,9 +8,9 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "baseUrl": "./src",
-    "paths": {
-      "@reduxjs/toolkit": ["node_modules/@reduxjs/toolkit"],
-    }
+    // "paths": {
+    //   "@reduxjs/toolkit": ["node_modules/@reduxjs/toolkit"],
+    // }
   },
   "include": [
     "./src/**/*.ts",
