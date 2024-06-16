@@ -1,57 +1,64 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RootState } from 'store/store';
-import { setPage } from 'store/slice';
-import { ReviewsListProps } from './interface';
-import Pagination from '../Pagination/index';
+import styles from './style.module.css';
+import Pagination from 'components/Pagination';
+import { ReviewsListProps, ReviewsListState } from './interface';
 
 
-class ReviewsList extends Component<ReviewsListProps> {
-  reviewsPerPage = 10;
+class ReviewsList extends Component<ReviewsListProps, ReviewsListState> {
+    constructor(props: ReviewsListProps) {
+        super(props);
+        this.state = {
+            currentPage: 1,
+            reviewsPerPage: 10,
+        };
+    }
 
-  formatName(name: string): string {
-    if (!name) return '';
-    const parts = name.split(' ');
-    const [lastName, firstName] = parts;
-    return `${lastName} ${firstName.charAt(0)}.`;
-  }
+    handlePageChange = (page: number) => {
+        this.setState({ currentPage: page });
+    };
 
-  render() {
-    const { reviews, currentPage, setPage } = this.props;
+    formatName(name: string): string {
+        if (!name) return '';
+        const [lastName, firstName] = name.split(' ');
+        if (!firstName) return lastName;
+        return `${lastName} ${firstName.charAt(0)}.`;
+    }
 
-    const indexOfLastReview = currentPage * this.reviewsPerPage;
-    const indexOfFirstReview = indexOfLastReview - this.reviewsPerPage;
-    const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
+    render() {
+        const { reviews } = this.props;
+        const { currentPage, reviewsPerPage } = this.state;
 
-    const totalPages = Math.ceil(reviews.length / this.reviewsPerPage);
+        const indexOfLastReview = currentPage * reviewsPerPage;
+        const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+        const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
 
-    return (
-      <div>
-        {currentReviews.map((review, index) => (
-          <div key={index}>
-            <p><strong>{this.formatName(review.name)}</strong></p>
-            <p>{review.review}</p>
-            <p>{review.date}</p>
-          </div>
-        ))}
-
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChange={setPage}
-        />
-      </div>
-    );
-  }
+        return (
+            <div className={styles.reviewsList}>
+                <ul>
+                    {currentReviews.map((review, index) => (
+                        <li key={index}>
+                            <div className={styles.listBlock}>
+                                <p className={styles.clientName}>{this.formatName(review.name)}</p>
+                                <p>{review.review}</p>
+                            </div>
+                            <p>{review.date}</p>
+                        </li>
+                    ))}
+                </ul>
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={Math.ceil(reviews.length / reviewsPerPage)}
+                    onPageChange={this.handlePageChange}
+                />
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = (state: RootState) => ({
-  reviews: state.reviews.reviews,
-  currentPage: state.reviews.currentPage,
+    reviews: state.reviews.reviews,
 });
 
-const mapDispatchToProps = {
-  setPage
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewsList);
+export default connect(mapStateToProps)(ReviewsList);

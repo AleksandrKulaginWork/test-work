@@ -1,0 +1,36 @@
+.reviewsList {
+    font-family: 'Arial', sans-serif;
+    color: rgb(36, 36, 36);
+}
+
+.reviewsList ul {
+    list-style-type: none;
+    padding: 15px;
+}
+
+.reviewsList li {
+    border-bottom: 2px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 20px;
+    align-items: center;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.reviewsList li:hover {
+    background-color: #a2befe;
+}
+
+.listBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.clientName {
+    font-weight: 600;
+}
+
+.reviewsList p {
+    margin: 5px 0;
+}

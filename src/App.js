@@ -2,9 +2,8 @@ import './App.css';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './store/store';
-import Watch from './components/Watch/index';
-import LanguageSelector from './components/LanguageSelector/index';
-import ReviewsList from './components/ReviewsList/index';
+import Header from './components/Header/index'
+import Main from './components/Main/index'
 
 
 class App extends Component {
@@ -12,14 +11,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="app">
-          привет мир
-        </div>
-        <div>
-        <Watch />
-        <LanguageSelector />
-        
-        <ReviewsList/>
-
+          <Header/>
+          <Main/>
         </div>
       </Provider>
     );

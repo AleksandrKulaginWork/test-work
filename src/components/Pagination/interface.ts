@@ -1,5 +1,5 @@
 export interface PaginationProps {
-    totalPages: number;
     currentPage: number;
+    totalPages: number;
     onPageChange: (page: number) => void;
 }

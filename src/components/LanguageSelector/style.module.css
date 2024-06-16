@@ -1,0 +1,17 @@
+.languageSelector {
+    font-size: 1rem;
+  }
+
+  .languageSelector select {
+    padding: 5px;
+    font-size: 1.2rem;
+    background: transparent;
+    border: none; 
+    outline: none; 
+    color: inherit; 
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    appearance: none; 
+    cursor: pointer;
+}
+

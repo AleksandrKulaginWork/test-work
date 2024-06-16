@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './style.module.css';
 
 interface WatchState {
     time: string;
@@ -37,7 +38,7 @@ tick() {
 
 render() {
     return (
-    <div>
+    <div className={styles.watch}>
         {this.state.time}
     </div>
     );
