@@ -12,4 +12,5 @@ export enum Language {
 export interface ReviewsState {
     language: Language;
     reviews: Review[];
+    currentPage: number; 
 }
